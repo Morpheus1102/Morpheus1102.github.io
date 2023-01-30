@@ -6,20 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. OverviewThe overall structure of the NVDLA is shown in the following figure.   2. Memories3. In-memory data formats4. Partition_o5. Partition_c6. Partition_m7. Partition_a8. Partition_p">
+    <meta name="description" content="1. OverviewDqv_E&lt;&#96;R+RTWQ0G,+}N6 The overall structure of the NVDLA is shown in the following figure.   It can be divided into five sections.  |-- TOP_MODULE.v     |-- NV_NVDLA_patition_o.v     |--">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NVDLA analyze">
 <meta property="og:url" content="http://example.com/2023/01/29/NVDLA-analyze/index.html">
 <meta property="og:site_name" content="Morhepus&#39; blog">
-<meta property="og:description" content="1. OverviewThe overall structure of the NVDLA is shown in the following figure.   2. Memories3. In-memory data formats4. Partition_o5. Partition_c6. Partition_m7. Partition_a8. Partition_p">
+<meta property="og:description" content="1. OverviewDqv_E&lt;&#96;R+RTWQ0G,+}N6 The overall structure of the NVDLA is shown in the following figure.   It can be divided into five sections.  |-- TOP_MODULE.v     |-- NV_NVDLA_patition_o.v     |--">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2023/01/29/c43qzBN5i7F9seA.png">
-<meta property="og:image" content="https://s2.loli.net/2023/01/29/RlNuhCFi3ZofIgT.png">
+<meta property="og:image" content="https://i.postimg.cc/rFzKNMsF/nvdla-overview.png">
+<meta property="og:image" content="https://i.postimg.cc/4dJ37TjG/overall-view.png">
+<meta property="og:image" content="https://i.postimg.cc/FKGQffDn/five-big-modules.png">
 <meta property="article:published_time" content="2023-01-29T02:27:01.000Z">
-<meta property="article:modified_time" content="2023-01-29T02:45:43.017Z">
+<meta property="article:modified_time" content="2023-01-30T12:32:27.431Z">
 <meta property="article:author" content="Mengqi Yin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2023/01/29/c43qzBN5i7F9seA.png">
+<meta name="twitter:image" content="https://i.postimg.cc/rFzKNMsF/nvdla-overview.png">
     
     
       
@@ -217,7 +218,7 @@ mjx-container[display="true"] + br {
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">9.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -256,10 +257,29 @@ mjx-container[display="true"] + br {
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><p>The overall structure of the NVDLA is shown in the following figure.</p>
-<p><img src="https://s2.loli.net/2023/01/29/c43qzBN5i7F9seA.png" alt="bridge_dma.png"></p>
-<p><img src="https://s2.loli.net/2023/01/29/RlNuhCFi3ZofIgT.png" alt="overall_view.png"></p>
-<h2 id="2-Memories"><a href="#2-Memories" class="headerlink" title="2. Memories"></a>2. Memories</h2><h2 id="3-In-memory-data-formats"><a href="#3-In-memory-data-formats" class="headerlink" title="3. In-memory data formats"></a>3. In-memory data formats</h2><h2 id="4-Partition-o"><a href="#4-Partition-o" class="headerlink" title="4. Partition_o"></a>4. Partition_o</h2><h2 id="5-Partition-c"><a href="#5-Partition-c" class="headerlink" title="5. Partition_c"></a>5. Partition_c</h2><h2 id="6-Partition-m"><a href="#6-Partition-m" class="headerlink" title="6. Partition_m"></a>6. Partition_m</h2><h2 id="7-Partition-a"><a href="#7-Partition-a" class="headerlink" title="7. Partition_a"></a>7. Partition_a</h2><h2 id="8-Partition-p"><a href="#8-Partition-p" class="headerlink" title="8. Partition_p"></a>8. Partition_p</h2>
+    <h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><p><code>Dqv_E&lt;`R+RTWQ0G,+}N6</code></p>
+<p>The overall structure of the NVDLA is shown in the following figure.</p>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/kB3JnrWk"><img src="https://i.postimg.cc/rFzKNMsF/nvdla-overview.png" alt="nvdla-overview.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/nsPxgNHS"><img src="https://i.postimg.cc/4dJ37TjG/overall-view.png" alt="overall-view.png"></a></p>
+<p>It can be divided into five sections.</p>
+<p><a target="_blank" rel="noopener" href="https://postimg.cc/Y44PZSc1"><img src="https://i.postimg.cc/FKGQffDn/five-big-modules.png" alt="five-big-modules.png"></a></p>
+<pre><code>|-- TOP_MODULE.v
+    |-- NV_NVDLA_patition_o.v
+    |-- NV_NVDLA_patition_c.v
+    |-- NV_NVDLA_patition_m.v
+    |-- NV_NVDLA_patition_a.v
+    |-- NV_NVDLA_patition_p.v
+</code></pre><ol>
+<li><code>Partition_o</code> controls the communication between processing elements with external controllers and memory units.</li>
+<li><code>Partition_c</code> manages various convolution kernel operations such as CDMA, CBUF, and CSC.</li>
+<li><code>Partition_m</code> performs multiplication and addition computations. This Convolution MAC module comprises of 16 MAC cells. Each of these cells includes 64 16-bit multipliers and 72 adders.</li>
+<li><code>Partition_a</code> accumulates the partial sums from the MAC arrays and estimates the results before sending it to the next stage of activations.</li>
+<li><code>Partition_p</code> performs various linear and non-linear operations as discussed.</li>
+</ol>
+<h2 id="2-Memories"><a href="#2-Memories" class="headerlink" title="2. Memories"></a>2. Memories</h2><h2 id="3-In-memory-data-formats"><a href="#3-In-memory-data-formats" class="headerlink" title="3. In-memory data formats"></a>3. In-memory data formats</h2><h2 id="4-Partition-o"><a href="#4-Partition-o" class="headerlink" title="4. Partition_o"></a>4. Partition_o</h2><h2 id="5-Partition-c"><a href="#5-Partition-c" class="headerlink" title="5. Partition_c"></a>5. Partition_c</h2><h2 id="6-Partition-m"><a href="#6-Partition-m" class="headerlink" title="6. Partition_m"></a>6. Partition_m</h2><h2 id="7-Partition-a"><a href="#7-Partition-a" class="headerlink" title="7. Partition_a"></a>7. Partition_a</h2><h2 id="8-Partition-p"><a href="#8-Partition-p" class="headerlink" title="8. Partition_p"></a>8. Partition_p</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="http://nvdla.org/#">NVDLA</a></li>
+</ul>
+
   </div>
 </article>
 
@@ -284,7 +304,7 @@ mjx-container[display="true"] + br {
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">9.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
