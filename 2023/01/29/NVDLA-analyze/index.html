@@ -6,21 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. OverviewDqv_E&lt;&#96;R+RTWQ0G,+}N6 The overall structure of the NVDLA is shown in the following figure.   It can be divided into five sections.  |-- TOP_MODULE.v     |-- NV_NVDLA_patition_o.v     |--">
+    <meta name="description" content="1. OverviewThe overall structure of the NVDLA is shown in the following figure.  It can be divided into five sections.   |-- TOP_MODULE.v     |-- NV_NVDLA_patition_o.v     |-- NV_NVDLA_patition_c.v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NVDLA analyze">
 <meta property="og:url" content="http://example.com/2023/01/29/NVDLA-analyze/index.html">
 <meta property="og:site_name" content="Morhepus&#39; blog">
-<meta property="og:description" content="1. OverviewDqv_E&lt;&#96;R+RTWQ0G,+}N6 The overall structure of the NVDLA is shown in the following figure.   It can be divided into five sections.  |-- TOP_MODULE.v     |-- NV_NVDLA_patition_o.v     |--">
+<meta property="og:description" content="1. OverviewThe overall structure of the NVDLA is shown in the following figure.  It can be divided into five sections.   |-- TOP_MODULE.v     |-- NV_NVDLA_patition_o.v     |-- NV_NVDLA_patition_c.v">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.postimg.cc/rFzKNMsF/nvdla-overview.png">
-<meta property="og:image" content="https://i.postimg.cc/4dJ37TjG/overall-view.png">
-<meta property="og:image" content="https://i.postimg.cc/FKGQffDn/five-big-modules.png">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/r92enq5m12t6c10/2023-Feb-05-15.54%20-%20Overall_View.png?dl=0">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/pzdrom39r9diix9/2023-Feb-05-15.54%20-%20Five_Big_Modules.png?dl=0">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/6ycos3i9jz1g06i/2023-Feb-05-16.46%20-%2016_46_43-Implementation%20Of%20A%20Deep%20Learning%20Inference%20Accelerator%20On%20The%20Fpga%20_%20Readwise.png?dl=0">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/2qj9p95hwqqimz2/2023-Feb-05-15.54%20-%20Ramdp_Read.png?dl=0">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/9v31x9dcqomlz93/2023-Feb-05-15.54%20-%20Ramdp_Write.png?dl=0">
+<meta property="og:image" content="https://www.dropbox.com/s/wztg52j0ff86ofg/2023-Feb-05-15.54%20-%20Rampdp.png?dl=0">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/pzdrom39r9diix9/2023-Feb-05-15.54%20-%20Five_Big_Modules.png?dl=0">
+<meta property="og:image" content="https://dl.dropboxusercontent.com/s/f7u8n4nu36j0w0x/csb-timing.png?dl=0">
 <meta property="article:published_time" content="2023-01-29T02:27:01.000Z">
-<meta property="article:modified_time" content="2023-01-30T12:32:27.431Z">
+<meta property="article:modified_time" content="2023-02-06T09:22:14.557Z">
 <meta property="article:author" content="Mengqi Yin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/rFzKNMsF/nvdla-overview.png">
+<meta name="twitter:image" content="https://dl.dropboxusercontent.com/s/r92enq5m12t6c10/2023-Feb-05-15.54%20-%20Overall_View.png?dl=0">
     
     
       
@@ -218,7 +223,7 @@ mjx-container[display="true"] + br {
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">9.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-RAMDP-Dual-Port-SRAM"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. RAMDP(Dual-Port SRAM)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Interface"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1. Interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-Read-timing"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2. Read timing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-Write-timing"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3. Write timing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-RAMPDP-Pseudo-Dual-Port-SRAM"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. RAMPDP: Pseudo-Dual Port SRAM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-Interface"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1. Interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Timing"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2. Timing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Overview"><span class="toc-number">4.1.</span> <span class="toc-text">4.1. Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-CSB"><span class="toc-number">4.2.</span> <span class="toc-text">4.2. CSB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-Clock-and-reset"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1. Clock and reset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-Request-channel"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2. Request channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-Read-data-channel"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3. Read data channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-Write-response-channel"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4. Write response channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-5-Inference-timing"><span class="toc-number">4.2.5.</span> <span class="toc-text">4.2.5. Inference timing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-CFGROM"><span class="toc-number">4.3.</span> <span class="toc-text">4.3. CFGROM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-MCIF"><span class="toc-number">4.4.</span> <span class="toc-text">4.4. MCIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-PDP"><span class="toc-number">4.5.</span> <span class="toc-text">4.5. PDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-CDP"><span class="toc-number">4.6.</span> <span class="toc-text">4.6. CDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-GLB"><span class="toc-number">4.7.</span> <span class="toc-text">4.7. GLB</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">9.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -257,12 +262,11 @@ mjx-container[display="true"] + br {
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><p><code>Dqv_E&lt;`R+RTWQ0G,+}N6</code></p>
-<p>The overall structure of the NVDLA is shown in the following figure.</p>
-<p><a target="_blank" rel="noopener" href="https://postimg.cc/kB3JnrWk"><img src="https://i.postimg.cc/rFzKNMsF/nvdla-overview.png" alt="nvdla-overview.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://postimg.cc/nsPxgNHS"><img src="https://i.postimg.cc/4dJ37TjG/overall-view.png" alt="overall-view.png"></a></p>
+    <h2 id="1-Overview"><a href="#1-Overview" class="headerlink" title="1. Overview"></a>1. Overview</h2><p>The overall structure of the NVDLA is shown in the following figure.</p>
+<p><img src="https://dl.dropboxusercontent.com/s/r92enq5m12t6c10/2023-Feb-05-15.54%20-%20Overall_View.png?dl=0" alt="nvdla-overview.png"></p>
 <p>It can be divided into five sections.</p>
-<p><a target="_blank" rel="noopener" href="https://postimg.cc/Y44PZSc1"><img src="https://i.postimg.cc/FKGQffDn/five-big-modules.png" alt="five-big-modules.png"></a></p>
+<p><img src="https://dl.dropboxusercontent.com/s/pzdrom39r9diix9/2023-Feb-05-15.54%20-%20Five_Big_Modules.png?dl=0" alt="five-big-modules.png"></p>
+<p><img src="https://dl.dropboxusercontent.com/s/6ycos3i9jz1g06i/2023-Feb-05-16.46%20-%2016_46_43-Implementation%20Of%20A%20Deep%20Learning%20Inference%20Accelerator%20On%20The%20Fpga%20_%20Readwise.png?dl=0" alt="2023-02-05-16-46-43-Implementation-of-a-Deep-Learning-Inference-Accelerator-on-the-FPGA-Readwise.png"></p>
 <pre><code>|-- TOP_MODULE.v
     |-- NV_NVDLA_patition_o.v
     |-- NV_NVDLA_patition_c.v
@@ -276,7 +280,334 @@ mjx-container[display="true"] + br {
 <li><code>Partition_a</code> accumulates the partial sums from the MAC arrays and estimates the results before sending it to the next stage of activations.</li>
 <li><code>Partition_p</code> performs various linear and non-linear operations as discussed.</li>
 </ol>
-<h2 id="2-Memories"><a href="#2-Memories" class="headerlink" title="2. Memories"></a>2. Memories</h2><h2 id="3-In-memory-data-formats"><a href="#3-In-memory-data-formats" class="headerlink" title="3. In-memory data formats"></a>3. In-memory data formats</h2><h2 id="4-Partition-o"><a href="#4-Partition-o" class="headerlink" title="4. Partition_o"></a>4. Partition_o</h2><h2 id="5-Partition-c"><a href="#5-Partition-c" class="headerlink" title="5. Partition_c"></a>5. Partition_c</h2><h2 id="6-Partition-m"><a href="#6-Partition-m" class="headerlink" title="6. Partition_m"></a>6. Partition_m</h2><h2 id="7-Partition-a"><a href="#7-Partition-a" class="headerlink" title="7. Partition_a"></a>7. Partition_a</h2><h2 id="8-Partition-p"><a href="#8-Partition-p" class="headerlink" title="8. Partition_p"></a>8. Partition_p</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<h2 id="2-Memories"><a href="#2-Memories" class="headerlink" title="2. Memories"></a>2. Memories</h2><h3 id="2-1-RAMDP-Dual-Port-SRAM"><a href="#2-1-RAMDP-Dual-Port-SRAM" class="headerlink" title="2.1. RAMDP(Dual-Port SRAM)"></a>2.1. RAMDP(Dual-Port SRAM)</h3><h4 id="2-1-1-Interface"><a href="#2-1-1-Interface" class="headerlink" title="2.1.1. Interface"></a>2.1.1. Interface</h4><p>This section describes a dual-port SRAM design. The macro is designed to perform read and write operations independently.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Pin</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Presence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CLK_R</code></td>
+<td style="text-align:left">Input;Clock</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Memory read clock</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CLK_W</code></td>
+<td style="text-align:left">Input;Clock</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Memory write clock</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>READ_[msb:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous read address input</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RD_[msb:0]</code></td>
+<td style="text-align:left">Output</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Memory read data output</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RE</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous read enable</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>WADR_[msb:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous write address input</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>WD_[msb:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous write data input</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>WE</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous write enable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Misc. Pins. These will depend on the target RAM library for whether they’re necessary.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Pin</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Presence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>IDDQ</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Asynchronous stand-by mode enable pin</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SLEEP_EN_[7:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Power gating controls</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RET_EN</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Retention enable</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RET_SVOP[1:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Timing margin control pins</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-1-2-Read-timing"><a href="#2-1-2-Read-timing" class="headerlink" title="2.1.2. Read timing"></a>2.1.2. Read timing</h4><p>Next graph describes the reading timing of the dual-port RAM:</p>
+<p><img src="https://dl.dropboxusercontent.com/s/2qj9p95hwqqimz2/2023-Feb-05-15.54%20-%20Ramdp_Read.png?dl=0" alt="ramdp-read.png"></p>
+<h4 id="2-1-3-Write-timing"><a href="#2-1-3-Write-timing" class="headerlink" title="2.1.3. Write timing"></a>2.1.3. Write timing</h4><p>Next graph describes the writing timing of the dual-port RAM:</p>
+<p><img src="https://dl.dropboxusercontent.com/s/9v31x9dcqomlz93/2023-Feb-05-15.54%20-%20Ramdp_Write.png?dl=0" alt="ramdp-write.png"></p>
+<h3 id="2-2-RAMPDP-Pseudo-Dual-Port-SRAM"><a href="#2-2-RAMPDP-Pseudo-Dual-Port-SRAM" class="headerlink" title="2.2. RAMPDP: Pseudo-Dual Port SRAM"></a>2.2. RAMPDP: Pseudo-Dual Port SRAM</h3><p>This section describes an embedded pseudo-dual port SRAM macro. The RAMPDP macro behaves like a dual port RAM, but is created by double clocking a single port RAM.</p>
+<h4 id="2-2-1-Interface"><a href="#2-2-1-Interface" class="headerlink" title="2.2.1. Interface"></a>2.2.1. Interface</h4><p>The following enumerates the RAMPDP pins and corresponding functions.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Pin</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Presence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CLK</code></td>
+<td style="text-align:left">Input;Clock</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Memory clock</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>READ_[msb:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous read address input</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RD_[msb:0]</code></td>
+<td style="text-align:left">Output</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Memory read data output</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RE</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous read enable</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>WADR_[msb:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous write address input</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>WD_[msb:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous write data input</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>WE</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Synchronous write enable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Misc. Pins. These will depend on the target RAM library for whether they are necessary.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Pin</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Presence</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>IDDQ</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Asynchronous stand-by mode enable pin</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SLEEP_EN_[7:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Power gating controls</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RET_EN</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Retention enable</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>RET_SVOP[1:0]</code></td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Default</td>
+<td style="text-align:left">Timing margin control pins</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-2-2-Timing"><a href="#2-2-2-Timing" class="headerlink" title="2.2.2. Timing"></a>2.2.2. Timing</h4><p>Next graph describes the timing of the Pseudo Dual Port RAM:</p>
+<p><img src="https://www.dropbox.com/s/wztg52j0ff86ofg/2023-Feb-05-15.54%20-%20Rampdp.png?dl=0" alt="rampdp.png"></p>
+<h2 id="3-In-memory-data-formats"><a href="#3-In-memory-data-formats" class="headerlink" title="3. In-memory data formats"></a>3. In-memory data formats</h2><h2 id="4-Partition-o"><a href="#4-Partition-o" class="headerlink" title="4. Partition_o"></a>4. Partition_o</h2><p>This partition controls the communication between processing elements with external controllers and memory units.</p>
+<h3 id="4-1-Overview"><a href="#4-1-Overview" class="headerlink" title="4.1. Overview"></a>4.1. Overview</h3><ul>
+<li><p>CSB - This module reads and writes configuration registers of each<br>layer in NVDLA core. This transfers data from the external manage-<br>ment processor through the APB interface.</p>
+</li>
+<li><p>CFGROM - This maintains configurable parameters of the core for its<br>respective specification definition.</p>
+</li>
+<li><p>MCIF - This interface communicates with all subunits that access the external DDR. This data bus uses an AXI protocol.</p>
+</li>
+<li><p>PDP and CDP - These units perform pooling and local response nor-<br>malization respectively.</p>
+</li>
+<li><p>GLB - They control the output interrupt signals of all the sub cores of NVDLA.</p>
+</li>
+</ul>
+<p>As shown in the blue part of the figure below.</p>
+<p><img src="https://dl.dropboxusercontent.com/s/pzdrom39r9diix9/2023-Feb-05-15.54%20-%20Five_Big_Modules.png?dl=0" alt="five-big-modules.png"></p>
+<h3 id="4-2-CSB"><a href="#4-2-CSB" class="headerlink" title="4.2. CSB"></a>4.2. CSB</h3><p>The CSB bus consists of three channels : the request channel , the read data channel , and the write response channel. The channels are as described below.</p>
+<h4 id="4-2-1-Clock-and-reset"><a href="#4-2-1-Clock-and-reset" class="headerlink" title="4.2.1. Clock and reset"></a>4.2.1. Clock and reset</h4><p>The CSB interface uses a signal clock domain , shared between NVDLA and the requester.</p>
+<h4 id="4-2-2-Request-channel"><a href="#4-2-2-Request-channel" class="headerlink" title="4.2.2. Request channel"></a>4.2.2. Request channel</h4><p>The request channel follows a valid/ready protocol; a data transaction occurs on the request channel when and only when the valid signal (from the host) and the ready signal (from NVDLA) are both asserted in the same clock cycle. Each request to CSB has a fixed request size of 32 bits of data, and has a fixed 16bit address size. CSB does not support any form of burst requests; each packet sent down the request channel is independent from any other packet.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Data field</th>
+<th style="text-align:left">Bits</th>
+<th style="text-align:left">Direction</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>csb2nvdla_valid</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Indicates that a request is valid</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>csb2nvlda_ready</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Output</td>
+<td style="text-align:left">Indicates that the receiver is ready to take a request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>csb2nvlda_addr</code></td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Address.Aligned to word boundary</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>csb2nvdla_wdat</code></td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Write data</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>csb2nvdla_write</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Write flag.<br><code>1'b0</code>:Request is a read request.<br><code>1'b1</code>:Request is a write request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>csb2nvlda_nposted</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Input</td>
+<td style="text-align:left">Non-posted write transaction indicator.<br><code>1'b0</code>: Request is a posted write request.<br><code>1'b1</code>: Indicates a non-posted write request.<br>Posted write transactions are writes where the requester does not expect to and will not receive a write completion from receiver on write ack channel. The requester will not know if the write encounters an error.<br>Non-posted write transactions are writes where the requester expects to receive a write completion or write error on write ack channel from receiver.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="4-2-3-Read-data-channel"><a href="#4-2-3-Read-data-channel" class="headerlink" title="4.2.3. Read data channel"></a>4.2.3. Read data channel</h4><p>The read data response channel is described in the below table. NVDLA returns read-response data to the host in strict request order; that is to say, each request packet (above) for which “write” is set to 0 will have exactly one response, and that response cannot jump forward or backwards relative to other reads.</p>
+<p>The read data channel follows a valid-only protocol; as such, the host cannot apply back-pressure to the NVDLA on this interface.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Data field</th>
+<th style="text-align:left">Bits</th>
+<th style="text-align:left">Direction</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>nvdla2csb_valid</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Output</td>
+<td style="text-align:left">Indicates that read data is valid</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>nvdla2csb_data</code></td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">Output</td>
+<td style="text-align:left">Data corresponding to a read request , or zero in the event of an error</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="4-2-4-Write-response-channel"><a href="#4-2-4-Write-response-channel" class="headerlink" title="4.2.4. Write response channel"></a>4.2.4. Write response channel</h4><p>The signals associated with the write response channel are described in the below table. NVDLA will return write completion to the host in request order for every non-posted write.</p>
+<p>The write completion channel also follows a valid-only protocol, and as such, the host cannot back-pressure NVDLA on this interface.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Data field</th>
+<th style="text-align:left">Bits</th>
+<th style="text-align:left">Direction</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>nvdla2csb_wr_complete</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Output</td>
+<td style="text-align:left">Indicates that a CSB write has complete</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="4-2-5-Inference-timing"><a href="#4-2-5-Inference-timing" class="headerlink" title="4.2.5. Inference timing"></a>4.2.5. Inference timing</h4><p>Following picture shows the timing of CSB interface.</p>
+<p><img src="https://dl.dropboxusercontent.com/s/f7u8n4nu36j0w0x/csb-timing.png?dl=0" alt="csb-timing.png"></p>
+<p>第一个时钟为posted的写模式，在读入<code>csb2nvdla_valid</code>和<code>csb2nvdla_ready</code>均为高电平时读入data和addr，并写入，不返回信号。第二个为non-posted写模式，在<code>nposted</code>电平为高时读入此时的数据和地址，并将ready信号置为低电平，写入完成后返回一个写完成信号(<code>nvdla2csb_wr_complete</code>置为高电平)随后将<code>csb2nvdla_ready</code>信号返回高电平。第三个为读信号，如图所示，当<code>ready</code>信号为低电平时不读入任何数据，当<code>ready</code>信号为高电平时读入此时的读地址，读取到数据后，返回一个读数据有效信号(<code>nvdla2csb_valid</code>)，并返回读数据。第四次与第三次大体相同。</p>
+<p>The firset clock is ‘posted’ write mode, when <code>csb2nvdla_valid</code> and <code>csb2nvdla_ready</code> are both high, read data and addr, and write. The second is non-posted write mode, when <code>nposted</code> is high, read data and addr, and set <code>ready</code> to low. After write complete, return a write complete signal(<code>nvdla2csb_wr_complete</code> is high), and then return <code>csb2nvdla_ready</code> to high. The third is read mode, as shown in the figure, when <code>ready</code> is low, no data is read. When <code>ready</code> is high, read the read address at this time, and return a read data valid signal(<code>nvdla2csb_valid</code>) after reading the data. The fourth and third are basically the same.</p>
+<h3 id="4-3-CFGROM"><a href="#4-3-CFGROM" class="headerlink" title="4.3. CFGROM"></a>4.3. CFGROM</h3><h3 id="4-4-MCIF"><a href="#4-4-MCIF" class="headerlink" title="4.4. MCIF"></a>4.4. MCIF</h3><h3 id="4-5-PDP"><a href="#4-5-PDP" class="headerlink" title="4.5. PDP"></a>4.5. PDP</h3><h3 id="4-6-CDP"><a href="#4-6-CDP" class="headerlink" title="4.6. CDP"></a>4.6. CDP</h3><h3 id="4-7-GLB"><a href="#4-7-GLB" class="headerlink" title="4.7. GLB"></a>4.7. GLB</h3><h2 id="5-Partition-c"><a href="#5-Partition-c" class="headerlink" title="5. Partition_c"></a>5. Partition_c</h2><h2 id="6-Partition-m"><a href="#6-Partition-m" class="headerlink" title="6. Partition_m"></a>6. Partition_m</h2><h2 id="7-Partition-a"><a href="#7-Partition-a" class="headerlink" title="7. Partition_a"></a>7. Partition_a</h2><h2 id="8-Partition-p"><a href="#8-Partition-p" class="headerlink" title="8. Partition_p"></a>8. Partition_p</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li>[1] <a target="_blank" rel="noopener" href="http://nvdla.org/#">NVDLA</a></li>
 </ul>
 
@@ -304,7 +635,7 @@ mjx-container[display="true"] + br {
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">9.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Overview"><span class="toc-number">1.</span> <span class="toc-text">1. Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memories"><span class="toc-number">2.</span> <span class="toc-text">2. Memories</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-RAMDP-Dual-Port-SRAM"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. RAMDP(Dual-Port SRAM)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Interface"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1. Interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-Read-timing"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2. Read timing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-Write-timing"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3. Write timing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-RAMPDP-Pseudo-Dual-Port-SRAM"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. RAMPDP: Pseudo-Dual Port SRAM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-Interface"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1. Interface</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Timing"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2. Timing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-In-memory-data-formats"><span class="toc-number">3.</span> <span class="toc-text">3. In-memory data formats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Partition-o"><span class="toc-number">4.</span> <span class="toc-text">4. Partition_o</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Overview"><span class="toc-number">4.1.</span> <span class="toc-text">4.1. Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-CSB"><span class="toc-number">4.2.</span> <span class="toc-text">4.2. CSB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-Clock-and-reset"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1. Clock and reset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-Request-channel"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2. Request channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-Read-data-channel"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3. Read data channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-Write-response-channel"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4. Write response channel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-5-Inference-timing"><span class="toc-number">4.2.5.</span> <span class="toc-text">4.2.5. Inference timing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-CFGROM"><span class="toc-number">4.3.</span> <span class="toc-text">4.3. CFGROM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-MCIF"><span class="toc-number">4.4.</span> <span class="toc-text">4.4. MCIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-PDP"><span class="toc-number">4.5.</span> <span class="toc-text">4.5. PDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-CDP"><span class="toc-number">4.6.</span> <span class="toc-text">4.6. CDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-GLB"><span class="toc-number">4.7.</span> <span class="toc-text">4.7. GLB</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Partition-c"><span class="toc-number">5.</span> <span class="toc-text">5. Partition_c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Partition-m"><span class="toc-number">6.</span> <span class="toc-text">6. Partition_m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Partition-a"><span class="toc-number">7.</span> <span class="toc-text">7. Partition_a</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Partition-p"><span class="toc-number">8.</span> <span class="toc-text">8. Partition_p</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">9.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
